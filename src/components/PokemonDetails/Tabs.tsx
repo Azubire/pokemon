@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import About from "./About";
 import Stats from "./Stats";
+import Similar from "./Similar";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -33,7 +34,9 @@ const Tabs = () => {
           <Tab.Panel>
             <Stats />
           </Tab.Panel>
-          <Tab.Panel>Hey 3</Tab.Panel>
+          <Tab.Panel>
+            <Similar />
+          </Tab.Panel>
         </Tab.Panels>
         <Tab.List className=" bg-white absolute left-10 right-10 bottom-0 pb-3">
           <div className="flex space-x-1 rounded-full bg-[#E9E9E9] p-2 w-full">
