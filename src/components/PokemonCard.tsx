@@ -1,7 +1,7 @@
 import pokemon from "@/assets/logo.svg";
 import EyeIcon from "./shared/EyeIcon";
 import { useState } from "react";
-import PokemonDetailsModal from "./PokemonDetailsModal";
+import PokemonDetailsModal from "./PokemonDetails/PokemonDetailsModal";
 
 const types = [
   {
