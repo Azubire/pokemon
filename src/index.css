@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #e85382;
+  }
+
+  .pink-theme {
+    --primary: #e85382;
+  }
+  .blue-theme {
+    --primary: #39badf;
+  }
+  .yellow-theme {
+    --primary: #e1a725;
+  }
+}

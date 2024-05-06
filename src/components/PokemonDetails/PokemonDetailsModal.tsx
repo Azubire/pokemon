@@ -57,7 +57,10 @@ const PokemonDetailsModal = ({
                   {/* type  */}
                   <div className="flex gap-2 mb-4 justify-center items-center mt-4">
                     {types.map((item) => (
-                      <div className="bg-[#EEEEEE] flex gap-2 px-3 rounded-full text-sm">
+                      <div
+                        key={item.type}
+                        className="bg-[#EEEEEE] flex gap-2 px-3 rounded-full text-sm"
+                      >
                         {item.icon} {item.type}
                       </div>
                     ))}

@@ -50,7 +50,10 @@ const ThemeModal = ({
                 <div className="mt-2 flex p-6 justify-center items-center gap-3">
                   {["bg-[#E85382]", "bg-[#39BADF]", "bg-[#E1A725]"].map(
                     (theme) => (
-                      <button className="flex items-center border border-gray-500 p-1 rounded-full cursor-pointer hover:scale-105 duration-300">
+                      <button
+                        key={theme}
+                        className="flex items-center border border-gray-500 p-1 rounded-full cursor-pointer hover:scale-105 duration-300"
+                      >
                         <div
                           className={`rounded-full ${theme} p-2 w-10 h-10`}
                           // onClick={() => setShowThemeModal(true)}
