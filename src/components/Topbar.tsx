@@ -2,11 +2,19 @@ import { Link } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import Logo from "./Logo";
 import SearchIcon from "./shared/SearchIcon";
+import ThemeModal from "./ThemeModal";
+import { useState } from "react";
 
 const Topbar = () => {
+  const [showThemeModal, setShowThemeModal] = useState(false);
+
   return (
-    <header>
-      <nav className=" px-4 lg:px-6 border shadow-md h-[13vh]">
+    <header className="sticky top-0 z-20">
+      <ThemeModal
+        isOpen={showThemeModal}
+        setIsOpen={() => setShowThemeModal(false)}
+      />
+      <nav className=" px-4 lg:px-6 border shadow-md h-[13vh] bg-[rgba(255,255,255,0.70)]">
         <div className="flex  justify-between items-center mx-auto max-w-screen-xl h-full ">
           <Link to="/" className="flex items-center gap-3">
             <Logo className=" w-16 sm:w-[120px] sm:-mb-8 " />
@@ -26,7 +34,10 @@ const Topbar = () => {
             />
           </div>
           <button className="flex items-center border border-gray-500 p-1 rounded-full cursor-pointer hover:scale-105 duration-300">
-            <div className="rounded-full bg-primary p-2 w-8 h-8">
+            <div
+              className="rounded-full bg-primary p-2 w-8 h-8"
+              onClick={() => setShowThemeModal(true)}
+            >
               <span className="sr-only">toggle theme</span>
             </div>
           </button>

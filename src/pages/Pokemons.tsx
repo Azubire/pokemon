@@ -8,7 +8,7 @@ const Pokemons = () => {
     <main
       className="min-h-screen pb-36 "
       style={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(${bg})`,
+        backgroundImage: `linear-gradient(rgba(246, 246, 246, 0.95), rgba(246, 246, 246, 0.95)), url(${bg})`,
       }}
     >
       {/* nav */}

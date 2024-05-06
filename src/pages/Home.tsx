@@ -8,7 +8,7 @@ const Home = () => {
     <main
       className="h-screen flex justify-center items-center flex-col"
       style={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(${bg})`,
+        backgroundImage: `linear-gradient(rgba(246, 246, 246, 0.95), rgba(246, 246, 246, 0.95)), url(${bg})`,
       }}
     >
       <section className=" flex flex-col justify-center items-center gap-3 px-4">

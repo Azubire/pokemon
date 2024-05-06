@@ -23,7 +23,7 @@ const PokemonDetailsModal = ({
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={setIsOpen}>
+        <Dialog as="div" className="relative z-30" onClose={setIsOpen}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -48,7 +48,7 @@ const PokemonDetailsModal = ({
             >
               <Dialog.Panel className="min-h-full  p-3 w-full  bg-white overflow-y-auto h-full ">
                 {/* Card  */}
-                <Cover />
+                <Cover onClose={() => setIsOpen(false)} />
                 <div className="">
                   {/* title  */}
                   <h3 className="text-3xl font-bold mt-10 text-center">
