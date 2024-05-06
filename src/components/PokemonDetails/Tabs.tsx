@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import About from "./About";
+import Stats from "./Stats";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -23,13 +24,15 @@ const Tabs = () => {
   ]);
 
   return (
-    <div className="w-full max-w-md px-2 py-16 sm:px-0">
+    <div className="w-full max-w-md px-2 pt-5 pb-20 sm:px-0">
       <Tab.Group>
         <Tab.Panels className="mt-2  ">
           <Tab.Panel>
             <About />
           </Tab.Panel>
-          <Tab.Panel>Hey 2</Tab.Panel>
+          <Tab.Panel>
+            <Stats />
+          </Tab.Panel>
           <Tab.Panel>Hey 3</Tab.Panel>
         </Tab.Panels>
         <Tab.List className=" bg-white absolute left-10 right-10 bottom-0 pb-3">
