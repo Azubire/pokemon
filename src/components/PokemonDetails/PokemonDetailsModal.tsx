@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Cover from "./Cover";
-import About from "./About";
+import Tabs from "./Tabs";
 
 const types = [
   {
@@ -36,7 +36,7 @@ const PokemonDetailsModal = ({
             <div className="fixed inset-0 bg-black/25" />
           </Transition.Child>
 
-          <div className="fixed right-0 top-0 bottom-0 w-1/3 overflow-y-auto">
+          <div className="fixed right-0 top-0 bottom-0 w-1/3 overflow-hidden">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -46,26 +46,26 @@ const PokemonDetailsModal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="min-h-full  p-3 w-full  bg-white">
+              <Dialog.Panel className="min-h-full  p-3 w-full  bg-white overflow-y-auto h-full ">
                 {/* Card  */}
                 <Cover />
-                {/* title  */}
-                <h3 className="text-3xl font-bold mt-16 text-center">
-                  Charizard
-                </h3>
-                {/* type  */}
-                <div className="flex gap-2 mb-4 justify-center items-center mt-4">
-                  {types.map((item) => (
-                    <div className="bg-[#EEEEEE] flex gap-2 px-3 rounded-full text-sm">
-                      {item.icon} {item.type}
-                    </div>
-                  ))}
-                </div>
+                <div className="">
+                  {/* title  */}
+                  <h3 className="text-3xl font-bold mt-10 text-center">
+                    Charizard
+                  </h3>
+                  {/* type  */}
+                  <div className="flex gap-2 mb-4 justify-center items-center mt-4">
+                    {types.map((item) => (
+                      <div className="bg-[#EEEEEE] flex gap-2 px-3 rounded-full text-sm">
+                        {item.icon} {item.type}
+                      </div>
+                    ))}
+                  </div>
 
-                {/* stats  */}
-                <About />
-                {/* tabs  */}
-                {/* <p className="border">Hey</p> */}
+                  {/* tabs  */}
+                  <Tabs />
+                </div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
