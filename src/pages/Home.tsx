@@ -6,7 +6,7 @@ import HomeSearchBar from "@/components/home/HomeSearchBar";
 const Home = () => {
   return (
     <main
-      className="h-[100vh] flex justify-center items-center flex-col"
+      className="h-screen flex justify-center items-center flex-col"
       style={{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(${bg})`,
       }}

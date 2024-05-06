@@ -1,7 +1,7 @@
-const SearchIcon = () => {
+const SearchIcon = ({ className }: { className: string }) => {
   return (
     <svg
-      className="w-4 h-4 text-white "
+      className={className}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
