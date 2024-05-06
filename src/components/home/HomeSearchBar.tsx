@@ -1,5 +1,5 @@
 import InputSearch from "../InputSearch";
-import SearchIcon from "./SearchIcon";
+import SearchIcon from "../shared/SearchIcon";
 
 const HomeSearchBar = () => {
   return (

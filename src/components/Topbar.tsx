@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import Logo from "./Logo";
-import SearchIcon from "./home/SearchIcon";
+import SearchIcon from "./shared/SearchIcon";
 
 const Topbar = () => {
   return (
