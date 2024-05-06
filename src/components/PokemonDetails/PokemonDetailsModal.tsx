@@ -26,10 +26,10 @@ const PokemonDetailsModal = ({
         <Dialog as="div" className="relative z-30" onClose={setIsOpen}>
           <Transition.Child
             as={Fragment}
-            enter="ease-out duration-300"
+            enter="transition-opacity ease-in duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="ease-in duration-200"
+            leave="transition-opacity ease-out duration-300"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
@@ -39,12 +39,12 @@ const PokemonDetailsModal = ({
           <div className="fixed right-0 top-0 bottom-0 w-1/3 overflow-hidden">
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+              enter="transition ease-in-out duration-300 transform"
+              enterFrom="translate-x-60"
+              enterTo="translate-x-0"
+              leave="transition ease-in-out duration-200 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="translate-x-full"
             >
               <Dialog.Panel className="min-h-full  p-3 w-full  bg-white overflow-y-auto h-full ">
                 {/* Card  */}
