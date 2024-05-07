@@ -40,3 +40,11 @@ export interface IPokemon {
     }
   ];
 }
+
+export interface IPokemonType {
+  id: number;
+  name: string;
+  pokemon: {
+    pokemon: IPokemon;
+  }[];
+}

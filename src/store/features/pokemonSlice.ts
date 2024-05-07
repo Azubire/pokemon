@@ -1,11 +1,14 @@
 import { IPokemon } from "@/types/pokemon";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { TRootState } from "..";
 
 export interface IInitialState {
   size: number;
   page: number;
   data: IPokemon[];
-  pokemon: IPokemon;
+  pokemon: IPokemon & {
+    similarPokemons?: IPokemon[];
+  };
 }
 
 const initialState: IInitialState = {
@@ -35,16 +38,22 @@ const pokemonSlice = createSlice({
     setPokemon: (state, action: PayloadAction<IPokemon>) => {
       state.pokemon = action.payload;
     },
+
+    setSimilarPokemons: (state, action: PayloadAction<IPokemon[]>) => {
+      state.pokemon.similarPokemons = action.payload;
+    },
   },
 });
 
-export const getPaginatedPokemons = (state: IInitialState) => {
-  const start = (state.page - 1) * state.size;
-  const end = start + state.size;
+// get paginated pokemons from state
+export const getPaginatedPokemons = (state: TRootState) => {
+  const start = (state.pokemons.page - 1) * state.pokemons.size;
+  const end = start + state.pokemons.size;
 
-  return state.data.slice(start, end);
+  return state.pokemons.data.slice(start, end);
 };
-export const { setPokemons, setPage, setSize, setPokemon } =
+
+export const { setPokemons, setPage, setSize, setPokemon, setSimilarPokemons } =
   pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

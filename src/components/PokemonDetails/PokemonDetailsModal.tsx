@@ -14,8 +14,6 @@ const PokemonDetailsModal = ({
 }) => {
   const { pokemon } = useAppSelector((state) => state.pokemons);
 
-  console.log("pokemon", pokemon);
-
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>

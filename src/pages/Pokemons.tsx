@@ -14,9 +14,7 @@ const Pokemons = () => {
     }
   );
 
-  const paginatedResults = useAppSelector((state) =>
-    getPaginatedPokemons(state.pokemons)
-  );
+  const paginatedResults = useAppSelector(getPaginatedPokemons);
 
   return (
     <main
