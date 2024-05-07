@@ -26,8 +26,8 @@ const Topbar = () => {
         isOpen={showThemeModal}
         setIsOpen={() => setShowThemeModal(false)}
       />
-      <nav className=" px-4 lg:px-6 border shadow-md h-[13vh] bg-[rgba(255,255,255,0.70)]">
-        <div className="flex  justify-between items-center mx-auto max-w-screen-xl h-full ">
+      <nav className="px-4 lg:px-6 border shadow-md h-[13vh] bg-[rgba(255,255,255,0.70)]">
+        <div className="flex gap-3 justify-between items-center mx-auto max-w-screen-xl h-full ">
           <Link to="/" className="flex items-center gap-3">
             <Logo className=" w-16 sm:w-[120px] sm:-mb-8 " />
             <h4 className="hidden sm:block self-center text-2xl font-bold whitespace-nowrap">
