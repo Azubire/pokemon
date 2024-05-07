@@ -10,15 +10,17 @@ export const api = createApi({
     baseUrl: import.meta.env.VITE_API_BASE_URL,
   }),
   endpoints: (builder) => ({
-    getPokemons: builder.query<{ results: IPokemon[] }, void>({
-      query: () => "pokemon?limit=500",
+    getPokemons: builder.query<{ results: IPokemon[] }, string | undefined>({
+      query: (search) => (search ? `pokemon/${search}` : "pokemon?limit=500"),
 
       onQueryStarted: async (_args, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
 
         // set pokemons to store from query results
-        if (data.results) {
+        if (data && data.results) {
           dispatch(setPokemons(data.results));
+        } else {
+          dispatch(setPokemons([data as unknown as IPokemon]));
         }
       },
     }),

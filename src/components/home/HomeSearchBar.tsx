@@ -1,9 +1,21 @@
+import { useState } from "react";
 import InputSearch from "../InputSearch";
 import SearchIcon from "../shared/SearchIcon";
+import { useNavigate } from "react-router-dom";
 
 const HomeSearchBar = () => {
+  const [search, setSearch] = useState<string>("");
+
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate({
+      pathname: "/pokemons",
+      search: `?search=${search}`,
+    });
+  };
   return (
-    <form>
+    <form onSubmit={handleSearch}>
       <label
         htmlFor="pokemon-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only "
@@ -19,6 +31,8 @@ const HomeSearchBar = () => {
             </div>
           </div>
         }
+        value={search}
+        onChange={(value) => setSearch(value)}
       />
     </form>
   );

@@ -1,9 +1,13 @@
 const InputSearch = ({
+  value,
+  onChange,
   startIcon,
   endIcon,
   className,
   style = {},
 }: {
+  value: string;
+  onChange: (value: string) => void;
   startIcon?: JSX.Element;
   endIcon?: JSX.Element;
   className: string;
@@ -18,6 +22,8 @@ const InputSearch = ({
         className={className}
         style={style}
         placeholder="Enter pokemon name"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         required
       />
       {endIcon && endIcon}

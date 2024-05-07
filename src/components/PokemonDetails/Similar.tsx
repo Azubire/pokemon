@@ -5,7 +5,11 @@ import SimilarPokemonCard from "./SimilarPokemonCard";
 const Similar = () => {
   const { pokemon } = useAppSelector((state) => state.pokemons);
 
-  const { isFetching } = useGetTypesQuery(pokemon.types[0].type.name);
+  const { isFetching } = useGetTypesQuery(pokemon.types[0].type.name, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  console.log("pokemon", pokemon);
 
   return (
     <div className="bg-gradient-to-r from-[#FFFFFF] via-[#D9D9D980] to-[#FFFFFF] px-4">
