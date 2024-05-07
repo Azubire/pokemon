@@ -3,9 +3,22 @@ import bg from "@/assets/bg.png";
 import PokemonCard from "@/components/PokemonCard";
 import Pagination from "@/components/shared/Pagination";
 import { useGetPokemonsQuery } from "@/services/api";
+import { useAppSelector } from "@/hooks/redux";
+import { getPaginatedPokemons } from "@/store/features/pokemonSlice";
 
 const Pokemons = () => {
-  const { isLoading } = useGetPokemonsQuery({});
+  const { isLoading } = useGetPokemonsQuery(
+    {},
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
+
+  const paginatedResults = useAppSelector((state) =>
+    getPaginatedPokemons(state.pokemons)
+  );
+
+  // console.log("pokemons", paginatedResults);
 
   return (
     <main
@@ -20,8 +33,8 @@ const Pokemons = () => {
         {isLoading && <h1>Loading...</h1>}
         {/* pokemons */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4  my-20 gap-y-16 sm:gap-y-4">
-          {[1, 2, 3, 4, 4, 5, 3, 4].map(() => (
-            <PokemonCard />
+          {paginatedResults?.map((pokemon) => (
+            <PokemonCard key={pokemon.name} {...pokemon} />
           ))}
         </div>
         {/* paginator  */}

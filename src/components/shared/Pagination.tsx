@@ -1,13 +1,22 @@
-import { useState } from "react";
 import NextIcon from "./NextIcon";
 import PrevIcon from "./PrevIcon";
 import PageSizeDropdown from "./PageSizeDropdown";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { setPage, setSize } from "@/store/features/pokemonSlice";
 
 const Pagination = () => {
-  const [filter, setFilter] = useState({
-    limit: 8,
-    page: 1,
-  });
+  const dispatch = useAppDispatch();
+
+  const { page, size } = useAppSelector((state) => state.pokemons);
+
+  const handlePageChange = (page: number) => {
+    dispatch(setPage(page));
+  };
+
+  const handleSizeChange = (size: number) => {
+    dispatch(setSize(size));
+  };
+
   return (
     <nav
       className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
@@ -15,13 +24,13 @@ const Pagination = () => {
     >
       <ul className="inline-flex items-stretch gap-2">
         <li>
-          <a
-            href="#"
+          <button
             className="flex items-center justify-center h-full p-2  bg-[#E1E1E1] rounded-md border border-gray-300 hover:bg-[#F1F1F1] hover:text-gray-700 "
+            onClick={() => handlePageChange(page - 1)}
           >
             <span className="sr-only">Previous</span>
             <PrevIcon />
-          </a>
+          </button>
         </li>
         <li>
           <a
@@ -33,20 +42,17 @@ const Pagination = () => {
         </li>
 
         <li>
-          <a
-            href="#"
+          <button
             className="flex items-center justify-center h-full p-2 leading-tight  bg-[#E1E1E1] rounded-md border border-gray-300 hover:bg-[#F1F1F1] hover:text-gray-700 "
+            onClick={() => handlePageChange(page + 1)}
           >
             <span className="sr-only">Next</span>
             <NextIcon />
-          </a>
+          </button>
         </li>
       </ul>
 
-      <PageSizeDropdown
-        value={filter.limit}
-        onChange={(value) => setFilter({ ...filter, limit: value })}
-      />
+      <PageSizeDropdown value={size} onChange={handleSizeChange} />
     </nav>
   );
 };

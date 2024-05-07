@@ -1,3 +1,5 @@
+import { setPokemons } from "@/store/features/pokemonSlice";
+import { IPokemon } from "@/types/pokemon";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
@@ -12,18 +14,18 @@ export const api = createApi({
       onQueryStarted: async (_args, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
 
-        console.log("pokemons", data);
-        // if (data.success && data.data) {
-        //   dispatch(setPokemons(data.data));
-
-        // }
+        if (data.results) {
+          dispatch(setPokemons(data.results));
+        }
       },
     }),
-    getPokemon: builder.query({ query: (name) => `pokemon/${name}` }),
+    getPokemon: builder.query<IPokemon, string>({
+      query: (name) => `pokemon/${name}`,
+    }),
     getTypes: builder.query({ query: () => "type" }),
     getAbilities: builder.query({ query: () => "ability" }),
     getStats: builder.query({ query: () => "stat" }),
   }),
 });
 
-export const { useGetPokemonsQuery } = api;
+export const { useGetPokemonsQuery, useGetPokemonQuery } = api;
