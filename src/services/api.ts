@@ -9,7 +9,7 @@ export const api = createApi({
   }),
   endpoints: (builder) => ({
     getPokemons: builder.query({
-      query: () => "pokemon?limit=50",
+      query: () => "pokemon?limit=500",
 
       onQueryStarted: async (_args, { dispatch, queryFulfilled }) => {
         const { data } = await queryFulfilled;
