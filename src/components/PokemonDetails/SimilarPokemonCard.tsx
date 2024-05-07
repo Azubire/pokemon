@@ -5,7 +5,7 @@ const SimilarPokemonCard = ({ name }: { name: string }) => {
   const { data: pokemon, isFetching } = useGetPokemonQuery(name);
 
   return (
-    <div className="hover:scale-110 transition duration-300 ease-in rounded-xl p-2 flex flex-col gap-3 border items-center bg-white group/item h-fit  ">
+    <div className="hover:scale-105 transition duration-300 ease-in rounded-xl p-2 flex flex-col gap-3 border items-center bg-white group/item h-fit  ">
       {/* media */}
       <div className="bg-[#F1F1F1] rounded-xl p-5 pt-0 ">
         {isFetching ? (

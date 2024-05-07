@@ -7,12 +7,9 @@ import { useAppSelector } from "@/hooks/redux";
 import { getPaginatedPokemons } from "@/store/features/pokemonSlice";
 
 const Pokemons = () => {
-  const { isLoading } = useGetPokemonsQuery(
-    {},
-    {
-      refetchOnMountOrArgChange: true,
-    }
-  );
+  const { isLoading } = useGetPokemonsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const paginatedResults = useAppSelector(getPaginatedPokemons);
 
@@ -25,17 +22,20 @@ const Pokemons = () => {
     >
       {/* nav */}
       <Topbar />
-      <div className="sm:w-3/4 mx-auto p-4">
-        {isLoading && <h1>Loading...</h1>}
-        {/* pokemons */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4  my-20 gap-y-16 sm:gap-y-4">
-          {paginatedResults?.map((pokemon) => (
-            <PokemonCard key={pokemon.name} {...pokemon} />
-          ))}
-        </div>
-        {/* paginator  */}
+      <div className="sm:w-3/4 mx-auto p-4 my-20">
+        {isLoading ? (
+          <h1 className="text-xl text-center">
+            Loading<span className="animate-pulse">...</span>
+          </h1>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 gap-y-16 sm:gap-y-4">
+            {paginatedResults?.map((pokemon) => (
+              <PokemonCard key={pokemon.name} {...pokemon} />
+            ))}
+          </div>
+        )}
 
-        <Pagination />
+        <div>{paginatedResults && <Pagination />}</div>
       </div>
     </main>
   );
