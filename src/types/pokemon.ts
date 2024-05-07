@@ -20,14 +20,14 @@ export interface IPokemon {
       };
     };
   };
-  stats: {
-    hp: number;
-    attack: number;
-    defense: number;
-    special_attack: number;
-    special_defense: number;
-    speed: number;
-  };
+  stats: Array<{
+    base_stat: 40;
+    effort: 0;
+    stat: {
+      name: string;
+      url: string;
+    };
+  }>;
   weight: number;
   height: number;
   base_experience: number;
