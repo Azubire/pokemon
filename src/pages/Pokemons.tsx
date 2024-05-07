@@ -39,15 +39,15 @@ const Pokemons = () => {
       />
       {/* nav */}
       <Topbar />
-      <div className="sm:w-3/4 mx-auto p-4 my-20">
+      <div className="lg:w-3/4 mx-auto p-4 my-20">
         {isFetching ? (
-          <div className="flex justify-center h-[50vh]">
+          <div className="flex justify-center lg:h-[50vh]">
             <h1 className="text-xl text-center">
               Loading<span className="animate-pulse">...</span>
             </h1>
           </div>
         ) : paginatedResults.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 gap-y-16 sm:gap-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-16 sm:gap-y-4">
             {paginatedResults?.map((pokemon) => (
               <PokemonCard
                 key={pokemon.name}

@@ -35,7 +35,7 @@ const PokemonDetailsModal = ({
             <div className="fixed inset-0 bg-black/25" />
           </Transition.Child>
 
-          <div className="fixed right-0 top-0 bottom-0 w-1/3 overflow-hidden">
+          <div className="fixed right-0 top-0 bottom-0 w-full sm:w-1/2 lg:w-1/3 overflow-hidden">
             <Transition.Child
               as={Fragment}
               enter="transition ease-in-out duration-300 transform"
