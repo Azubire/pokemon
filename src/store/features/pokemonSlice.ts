@@ -53,6 +53,7 @@ export const getPaginatedPokemons = (state: TRootState) => {
   return state.pokemons.data.slice(start, end);
 };
 
+// export actions
 export const { setPokemons, setPage, setSize, setPokemon, setSimilarPokemons } =
   pokemonSlice.actions;
 

@@ -11,6 +11,7 @@ const Topbar = () => {
 
   const navigate = useNavigate();
 
+  // handle pokemon search
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
     navigate({

@@ -1,5 +1,7 @@
 import { useGetPokemonQuery } from "@/services/api";
 import ImgPlaceholder from "../shared/ImgPlaceholder";
+import { IPokemon } from "@/types/pokemon";
+import { getImageURL } from "@/utils";
 
 const SimilarPokemonCard = ({ name }: { name: string }) => {
   const { data: pokemon, isFetching } = useGetPokemonQuery(name);
@@ -12,7 +14,7 @@ const SimilarPokemonCard = ({ name }: { name: string }) => {
           <ImgPlaceholder />
         ) : (
           <img
-            src={pokemon?.sprites?.other?.dream_world?.front_default}
+            src={getImageURL(pokemon as IPokemon)}
             alt={name}
             className="-mt-10 w-32 h-32 object-contain "
           />

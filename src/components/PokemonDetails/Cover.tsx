@@ -1,7 +1,8 @@
 import { useAppSelector } from "@/hooks/redux";
 import ArrowBack from "../shared/ArrowBack";
 import { useLayoutEffect, useState } from "react";
-import { getLightAndDarkColors } from "@/utils";
+import { getImageURL, getLightAndDarkColors } from "@/utils";
+import { IPokemon } from "@/types/pokemon";
 
 type TColor = { light: string; dark: string };
 const Cover = ({ onClose }: { onClose: () => void }) => {
@@ -9,12 +10,10 @@ const Cover = ({ onClose }: { onClose: () => void }) => {
   const [colors, setcolors] = useState<TColor>({} as TColor);
 
   useLayoutEffect(() => {
-    getLightAndDarkColors(
-      pokemon?.sprites?.other?.dream_world?.front_default
-    ).then((color) => {
+    getLightAndDarkColors(getImageURL(pokemon as IPokemon)).then((color) => {
       setcolors(color);
     });
-  }, [pokemon?.sprites?.other?.dream_world?.front_default]);
+  }, [pokemon]);
 
   return (
     <div
@@ -30,7 +29,7 @@ const Cover = ({ onClose }: { onClose: () => void }) => {
         <ArrowBack />
       </button>
       <img
-        src={pokemon?.sprites?.other?.dream_world?.front_default}
+        src={getImageURL(pokemon as IPokemon)}
         alt={pokemon?.name}
         className="-mb-16 w-36 mx-auto object-contain "
       />

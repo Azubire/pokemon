@@ -1,4 +1,10 @@
+import { IPokemon } from "@/types/pokemon";
 import ColorThief from "colorthief";
+
+// get image
+export const getImageURL = (pokemon: IPokemon) => {
+  return pokemon?.sprites?.other?.dream_world?.front_default;
+};
 
 // randomly generate unique id
 export const generateUniqueId = () => {

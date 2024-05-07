@@ -2,7 +2,7 @@ import EyeIcon from "./shared/EyeIcon";
 import { IPokemon } from "@/types/pokemon";
 import { useGetPokemonQuery } from "@/services/api";
 import ImgPlaceholder from "./shared/ImgPlaceholder";
-import { typeIcons } from "@/utils";
+import { getImageURL, typeIcons } from "@/utils";
 import { useAppDispatch } from "@/hooks/redux";
 import { setPokemon } from "@/store/features/pokemonSlice";
 
@@ -17,6 +17,7 @@ const PokemonCard = ({
 
   const dispatch = useAppDispatch();
 
+  // set clicked pokemon to global store and show modal
   const handleViewPokemonDetails = () => {
     dispatch(setPokemon(pokemon as IPokemon));
 
@@ -33,7 +34,7 @@ const PokemonCard = ({
               <ImgPlaceholder />
             ) : (
               <img
-                src={pokemon?.sprites?.other?.dream_world?.front_default}
+                src={getImageURL(pokemon as IPokemon)}
                 alt={name}
                 className="-mt-10 w-32 h-32 mx-auto object-contain "
               />

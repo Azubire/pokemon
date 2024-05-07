@@ -21,6 +21,7 @@ const Pokemons = () => {
 
   const paginatedResults = useAppSelector(getPaginatedPokemons);
 
+  // clear search results
   const handleClearSearch = () => {
     searchParams.delete("search");
     setSearchParams({}, { replace: true });
@@ -33,6 +34,7 @@ const Pokemons = () => {
         backgroundImage: `linear-gradient(rgba(246, 246, 246, 0.95), rgba(246, 246, 246, 0.95)), url(${bg})`,
       }}
     >
+      {/* pokemon details modal  */}
       <PokemonDetailsModal
         isOpen={showPokemonDetails}
         setIsOpen={() => setShowPokemonDetails(false)}

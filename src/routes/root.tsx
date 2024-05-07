@@ -2,7 +2,7 @@ import Home from "@/pages/Home";
 import Pokemons from "@/pages/Pokemons";
 import { createBrowserRouter } from "react-router-dom";
 
-//root router
+// init root router
 export const routes = createBrowserRouter([
   {
     path: "/",
