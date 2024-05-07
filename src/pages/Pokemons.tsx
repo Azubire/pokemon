@@ -10,10 +10,7 @@ import { useSearchParams } from "react-router-dom";
 const Pokemons = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // console.log("search", searchParams.get("q"));
-
   const search = searchParams.get("search") || undefined;
-  console.log("search", search);
 
   const { isFetching } = useGetPokemonsQuery(search, {
     refetchOnMountOrArgChange: true,

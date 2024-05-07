@@ -1,6 +1,6 @@
 const ImgPlaceholder = () => {
   return (
-    <div className="flex items-center justify-center -mt-10 w-32 h-32 object-contain bg-gray-300 rounded animate-pulse ">
+    <div className="flex items-center justify-center -mt-10 w-32 h-32 object-contain bg-gray-300 rounded animate-pulse mx-auto">
       <svg
         className="w-10 h-10 text-gray-200 "
         aria-hidden="true"
