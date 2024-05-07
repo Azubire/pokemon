@@ -1,12 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputSearch from "./InputSearch";
 import Logo from "./Logo";
 import SearchIcon from "./shared/SearchIcon";
 import ThemeModal from "./ThemeModal";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const Topbar = () => {
   const [showThemeModal, setShowThemeModal] = useState(false);
+  const [search, setSearch] = useState<string>("");
+
+  const navigate = useNavigate();
+
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    navigate({
+      pathname: "/pokemons",
+      search: `?search=${search}`,
+    });
+  };
 
   return (
     <header className="sticky top-0 z-20">
@@ -22,7 +33,13 @@ const Topbar = () => {
               Poké<span className="text-primary">book</span>
             </h4>
           </Link>
-          <div className="sm:w-[400px]">
+          <form onSubmit={handleSearch} className="sm:w-[400px]">
+            <label
+              htmlFor="pokemon-search"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only "
+            >
+              Search
+            </label>
             <InputSearch
               startIcon={
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 ">
@@ -31,8 +48,10 @@ const Topbar = () => {
               }
               className="block w-full p-2.5 ps-10 text-sm text-gray-900 border rounded-full bg-transparent focus:outline-none  "
               style={{ boxShadow: "0 3px  1px #ccc" }}
+              value={search}
+              onChange={(value) => setSearch(value)}
             />
-          </div>
+          </form>
           <button className="flex items-center border border-gray-500 p-1 rounded-full cursor-pointer hover:scale-105 duration-300">
             <div
               className="rounded-full bg-primary p-2 w-8 h-8"

@@ -14,13 +14,16 @@ export const api = createApi({
       query: (search) => (search ? `pokemon/${search}` : "pokemon?limit=500"),
 
       onQueryStarted: async (_args, { dispatch, queryFulfilled }) => {
-        const { data } = await queryFulfilled;
-
-        // set pokemons to store from query results
-        if (data && data.results) {
-          dispatch(setPokemons(data.results));
-        } else {
-          dispatch(setPokemons([data as unknown as IPokemon]));
+        try {
+          const { data } = await queryFulfilled;
+          // set pokemons to store from query results
+          if (data && data.results) {
+            dispatch(setPokemons(data.results));
+          } else {
+            dispatch(setPokemons([data as unknown as IPokemon]));
+          }
+        } catch (error) {
+          dispatch(setPokemons([]));
         }
       },
     }),
