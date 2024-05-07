@@ -3,6 +3,7 @@ import { useState } from "react";
 import PokemonDetailsModal from "./PokemonDetails/PokemonDetailsModal";
 import { IPokemon } from "@/types/pokemon";
 import { useGetPokemonQuery } from "@/services/api";
+import ImgPlaceholder from "./shared/ImgPlaceholder";
 
 const types = [
   {
@@ -32,11 +33,15 @@ const PokemonCard = ({ name }: IPokemon) => {
         <div className="hover:scale-110 transition duration-300 ease-in rounded-xl p-2 flex flex-col gap-3 shadow-sm items-center bg-white group/item h-fit  ">
           {/* media */}
           <div className="bg-[#F1F1F1] rounded-xl p-3 pt-0 ">
-            <img
-              src={pokemon?.sprites?.other?.dream_world?.front_default}
-              alt={name}
-              className="-mt-10 w-32 h-32 object-contain "
-            />
+            {pokemon?.sprites?.other?.dream_world?.front_default ? (
+              <img
+                src={pokemon?.sprites?.other?.dream_world?.front_default}
+                alt={name}
+                className="-mt-10 w-32 h-32 object-contain "
+              />
+            ) : (
+              <ImgPlaceholder />
+            )}
           </div>
           {/* name */}
           <p className="font-bold">{name}</p>
