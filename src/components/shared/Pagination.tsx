@@ -10,10 +10,6 @@ const Pagination = () => {
 
   const { page, size, data } = useAppSelector((state) => state.pokemons);
 
-  console.log("page", page);
-  console.log("size", size);
-  console.log("data", data);
-
   const handlePageChange = (page: number) => {
     dispatch(setPage(page));
   };
@@ -21,34 +17,6 @@ const Pagination = () => {
   const handleSizeChange = (size: number) => {
     dispatch(setSize(size));
   };
-
-  const selectVisiblePages = () => {
-    const currentPage = page;
-    const totalPages = Math.ceil(data.length / size);
-    const visiblePages = [currentPage];
-
-    let left = currentPage - 1;
-    let right = currentPage + 1;
-    const maxVisiblePages = 5; // Change as needed
-
-    while (
-      visiblePages.length < maxVisiblePages &&
-      (left > 0 || right <= totalPages)
-    ) {
-      if (left > 0) {
-        visiblePages.unshift(left);
-        left--;
-      }
-      if (right <= totalPages) {
-        visiblePages.push(right);
-        right++;
-      }
-    }
-
-    return visiblePages;
-  };
-
-  console.log("selectVisiblePages", selectVisiblePages());
 
   return (
     <nav

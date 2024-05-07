@@ -2,17 +2,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Cover from "./Cover";
 import Tabs from "./Tabs";
+import { useAppSelector } from "@/hooks/redux";
+import { typeIcons } from "@/utils";
 
-const types = [
-  {
-    type: "Fire",
-    icon: "🔥",
-  },
-  {
-    type: "Flying",
-    icon: "🦋",
-  },
-];
 const PokemonDetailsModal = ({
   isOpen,
   setIsOpen,
@@ -20,6 +12,10 @@ const PokemonDetailsModal = ({
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }) => {
+  const { pokemon } = useAppSelector((state) => state.pokemons);
+
+  console.log("pokemon", pokemon);
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -52,16 +48,17 @@ const PokemonDetailsModal = ({
                 <div className="">
                   {/* title  */}
                   <h3 className="text-3xl font-bold mt-10 text-center">
-                    Charizard
+                    {pokemon?.name}
                   </h3>
                   {/* type  */}
                   <div className="flex gap-2 mb-4 justify-center items-center mt-4">
-                    {types.map((item) => (
+                    {pokemon?.types?.map((type) => (
                       <div
-                        key={item.type}
+                        key={type.type.url}
                         className="bg-[#EEEEEE] flex gap-2 px-3 rounded-full text-sm"
                       >
-                        {item.icon} {item.type}
+                        <span>{typeIcons[type.type.name]}</span>
+                        <span>{type.type.name}</span>
                       </div>
                     ))}
                   </div>

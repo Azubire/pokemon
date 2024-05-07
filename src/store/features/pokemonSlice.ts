@@ -5,12 +5,14 @@ export interface IInitialState {
   size: number;
   page: number;
   data: IPokemon[];
+  pokemon: IPokemon;
 }
 
 const initialState: IInitialState = {
   size: 8,
   page: 1,
   data: [],
+  pokemon: {} as IPokemon,
 };
 initialState;
 
@@ -29,6 +31,10 @@ const pokemonSlice = createSlice({
     setSize: (state, action: PayloadAction<number>) => {
       state.size = action.payload;
     },
+
+    setPokemon: (state, action: PayloadAction<IPokemon>) => {
+      state.pokemon = action.payload;
+    },
   },
 });
 
@@ -38,6 +44,7 @@ export const getPaginatedPokemons = (state: IInitialState) => {
 
   return state.data.slice(start, end);
 };
-export const { setPokemons, setPage, setSize } = pokemonSlice.actions;
+export const { setPokemons, setPage, setSize, setPokemon } =
+  pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

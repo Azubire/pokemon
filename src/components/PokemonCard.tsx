@@ -5,20 +5,30 @@ import { IPokemon } from "@/types/pokemon";
 import { useGetPokemonQuery } from "@/services/api";
 import ImgPlaceholder from "./shared/ImgPlaceholder";
 import { typeIcons } from "@/utils";
+import { useAppDispatch } from "@/hooks/redux";
+import { setPokemon } from "@/store/features/pokemonSlice";
 
 const PokemonCard = ({ name }: IPokemon) => {
   const [showPokemonDetails, setShowPokemonDetails] = useState(false);
 
   const { data: pokemon, isFetching } = useGetPokemonQuery(name);
 
-  console.log("pokemon", pokemon);
+  const dispatch = useAppDispatch();
+
+  const handleViewPokemonDetails = () => {
+    dispatch(setPokemon(pokemon as IPokemon));
+
+    setShowPokemonDetails(true);
+  };
 
   return (
     <>
-      <PokemonDetailsModal
-        isOpen={showPokemonDetails}
-        setIsOpen={() => setShowPokemonDetails(false)}
-      />
+      {showPokemonDetails && (
+        <PokemonDetailsModal
+          isOpen={showPokemonDetails}
+          setIsOpen={() => setShowPokemonDetails(false)}
+        />
+      )}
 
       <div className="sm:h-[250px] hover:z-10 ">
         <div className="hover:scale-110 transition duration-300 ease-in rounded-xl p-2 flex flex-col gap-3 shadow-sm items-center bg-white group/item h-fit  ">
@@ -51,7 +61,7 @@ const PokemonCard = ({ name }: IPokemon) => {
 
           <button
             className="w-full flex sm:hidden justify-between items-center bg-primary text-white px-3 py-2 rounded-xl  group-hover/item:flex"
-            onClick={() => setShowPokemonDetails(true)}
+            onClick={handleViewPokemonDetails}
           >
             <p className="">View Pokemon</p>
             <EyeIcon />

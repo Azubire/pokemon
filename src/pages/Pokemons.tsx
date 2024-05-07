@@ -18,8 +18,6 @@ const Pokemons = () => {
     getPaginatedPokemons(state.pokemons)
   );
 
-  // console.log("pokemons", paginatedResults);
-
   return (
     <main
       className="min-h-screen pb-36 "
