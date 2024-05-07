@@ -13,7 +13,7 @@ const Home = () => {
     >
       <section className=" flex flex-col justify-center items-center gap-3 px-4">
         <Logo className="w-[300px]" />
-        <h4 className="text-4xl font-bold">
+        <h4 className="text-4xl font-extrabold">
           Poké <span className="text-primary">book</span>
         </h4>
         <p className="sm:w-2/3 text-center">

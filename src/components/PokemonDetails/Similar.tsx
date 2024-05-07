@@ -9,8 +9,6 @@ const Similar = () => {
     refetchOnMountOrArgChange: true,
   });
 
-  console.log("pokemon", pokemon);
-
   return (
     <div className="bg-gradient-to-r from-[#FFFFFF] via-[#D9D9D980] to-[#FFFFFF] px-4">
       <div className=" py-2">

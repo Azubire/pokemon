@@ -1,6 +1,4 @@
 import EyeIcon from "./shared/EyeIcon";
-import { useState } from "react";
-import PokemonDetailsModal from "./PokemonDetails/PokemonDetailsModal";
 import { IPokemon } from "@/types/pokemon";
 import { useGetPokemonQuery } from "@/services/api";
 import ImgPlaceholder from "./shared/ImgPlaceholder";
@@ -8,9 +6,13 @@ import { typeIcons } from "@/utils";
 import { useAppDispatch } from "@/hooks/redux";
 import { setPokemon } from "@/store/features/pokemonSlice";
 
-const PokemonCard = ({ name }: IPokemon) => {
-  const [showPokemonDetails, setShowPokemonDetails] = useState(false);
-
+const PokemonCard = ({
+  pokemon: { name },
+  setShowPokemonDetails,
+}: {
+  pokemon: IPokemon;
+  setShowPokemonDetails: (value: boolean) => void;
+}) => {
   const { data: pokemon, isFetching } = useGetPokemonQuery(name);
 
   const dispatch = useAppDispatch();
@@ -22,14 +24,7 @@ const PokemonCard = ({ name }: IPokemon) => {
   };
 
   return (
-    <>
-      {showPokemonDetails && (
-        <PokemonDetailsModal
-          isOpen={showPokemonDetails}
-          setIsOpen={() => setShowPokemonDetails(false)}
-        />
-      )}
-
+    <div>
       <div className="sm:h-[250px] hover:z-10 ">
         <div className="hover:scale-105 transition duration-300 ease-in rounded-xl p-2 flex flex-col gap-3 shadow-sm items-center bg-white group/item h-fit  ">
           {/* media */}
@@ -68,7 +63,7 @@ const PokemonCard = ({ name }: IPokemon) => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

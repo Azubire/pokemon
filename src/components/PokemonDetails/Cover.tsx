@@ -16,8 +16,6 @@ const Cover = ({ onClose }: { onClose: () => void }) => {
     });
   }, [pokemon?.sprites?.other?.dream_world?.front_default]);
 
-  console.log(colors);
-
   return (
     <div
       className={`border flex items-center p-2 rounded-lg h-40`}

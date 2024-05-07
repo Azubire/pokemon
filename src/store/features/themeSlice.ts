@@ -1,8 +1,9 @@
+import { TThemeType } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit/react";
 
 export interface IInitialState {
-  theme: "pink-theme" | "blue-theme" | "yellow-theme";
+  theme: TThemeType;
 }
 
 const initialState: IInitialState = {
@@ -14,10 +15,7 @@ const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
-    setTheme: (
-      state,
-      action: PayloadAction<"pink-theme" | "blue-theme" | "yellow-theme">
-    ) => {
+    setTheme: (state, action: PayloadAction<TThemeType>) => {
       state.theme = action.payload;
     },
   },

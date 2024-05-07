@@ -46,8 +46,8 @@ const Topbar = () => {
                   <SearchIcon className="w-4 h-4 text-gray-300" />
                 </div>
               }
-              className="block w-full p-2.5 ps-10 text-sm text-gray-900 border rounded-full bg-transparent focus:outline-none  "
-              style={{ boxShadow: "0 3px  1px #ccc" }}
+              className="block w-full p-2.5 ps-10 text-sm text-gray-900 border rounded-full bg-transparent focus:outline-none "
+              style={{ boxShadow: "0 3px  1px #eee" }}
               value={search}
               onChange={(value) => setSearch(value)}
             />

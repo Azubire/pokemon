@@ -1,9 +1,11 @@
+import { TThemeType } from "@/types";
+
 const ThemeProvider = ({
   children,
   theme,
 }: {
   children: React.ReactNode;
-  theme: string;
+  theme: TThemeType;
 }) => {
   return <main className={theme}>{children}</main>;
 };

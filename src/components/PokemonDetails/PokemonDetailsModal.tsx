@@ -13,11 +13,16 @@ const PokemonDetailsModal = ({
   setIsOpen: (value: boolean) => void;
 }) => {
   const { pokemon } = useAppSelector((state) => state.pokemons);
+  const { theme } = useAppSelector((state) => state.theme);
 
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-30" onClose={setIsOpen}>
+        <Dialog
+          as="div"
+          className={`relative z-30 ${theme}`}
+          onClose={setIsOpen}
+        >
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-in duration-300"

@@ -7,7 +7,7 @@ const Stats = () => {
   const { pokemon } = useAppSelector((state) => state.pokemons);
 
   return (
-    <div className="bg-gradient-to-r from-[#FFFFFF] via-[#D9D9D980] to-[#FFFFFF] px-4">
+    <section className="bg-gradient-to-r from-[#FFFFFF] via-[#D9D9D980] to-[#FFFFFF] px-4">
       <div className=" py-2">
         <h3 className="text-xl font-bold text-center bg-white py-2  ">Stats</h3>
         {pokemon?.stats.map(({ stat, base_stat }, index) => (
@@ -21,7 +21,7 @@ const Stats = () => {
           </React.Fragment>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

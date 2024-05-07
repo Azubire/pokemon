@@ -1,6 +1,24 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import bg from "@/assets/bg.png";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { TThemeType } from "@/types";
+import { setTheme } from "@/store/features/themeSlice";
+
+const themes: { name: TThemeType; value: string }[] = [
+  {
+    name: "pink-theme",
+    value: "#e85382",
+  },
+  {
+    name: "blue-theme",
+    value: "#39badf",
+  },
+  {
+    name: "yellow-theme",
+    value: "#e1a725",
+  },
+];
 
 const ThemeModal = ({
   isOpen,
@@ -9,6 +27,14 @@ const ThemeModal = ({
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }) => {
+  const dispath = useAppDispatch();
+  const { theme: activeTheme } = useAppSelector((state) => state.theme);
+
+  const handleThemeChange = (theme: TThemeType) => {
+    dispath(setTheme(theme));
+    setIsOpen(false);
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setIsOpen}>
@@ -48,21 +74,24 @@ const ThemeModal = ({
                   Choose Theme
                 </Dialog.Title>
                 <div className="mt-2 flex p-6 justify-center items-center gap-3">
-                  {["bg-[#E85382]", "bg-[#39BADF]", "bg-[#E1A725]"].map(
-                    (theme) => (
-                      <button
-                        key={theme}
-                        className="flex items-center border border-gray-500 p-1 rounded-full cursor-pointer hover:scale-105 duration-300"
+                  {themes?.map((theme) => (
+                    <button
+                      key={theme.value}
+                      className={`${
+                        theme.name === activeTheme && "p-1"
+                      } flex items-center border border-gray-500 rounded-full cursor-pointer hover:scale-105 duration-300`}
+                    >
+                      <div
+                        className={`rounded-full  p-2 w-10 h-10`}
+                        style={{
+                          backgroundColor: theme.value,
+                        }}
+                        onClick={() => handleThemeChange(theme.name)}
                       >
-                        <div
-                          className={`rounded-full ${theme} p-2 w-10 h-10`}
-                          // onClick={() => setShowThemeModal(true)}
-                        >
-                          <span className="sr-only">toggle theme</span>
-                        </div>
-                      </button>
-                    )
-                  )}
+                        <span className="sr-only">toggle theme</span>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

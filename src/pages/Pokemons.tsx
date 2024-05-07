@@ -6,9 +6,12 @@ import { useGetPokemonsQuery } from "@/services/api";
 import { useAppSelector } from "@/hooks/redux";
 import { getPaginatedPokemons } from "@/store/features/pokemonSlice";
 import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import PokemonDetailsModal from "@/components/PokemonDetails/PokemonDetailsModal";
 
 const Pokemons = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [showPokemonDetails, setShowPokemonDetails] = useState(false);
 
   const search = searchParams.get("search") || undefined;
 
@@ -30,6 +33,10 @@ const Pokemons = () => {
         backgroundImage: `linear-gradient(rgba(246, 246, 246, 0.95), rgba(246, 246, 246, 0.95)), url(${bg})`,
       }}
     >
+      <PokemonDetailsModal
+        isOpen={showPokemonDetails}
+        setIsOpen={() => setShowPokemonDetails(false)}
+      />
       {/* nav */}
       <Topbar />
       <div className="sm:w-3/4 mx-auto p-4 my-20">
@@ -42,7 +49,11 @@ const Pokemons = () => {
         ) : paginatedResults.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 gap-y-16 sm:gap-y-4">
             {paginatedResults?.map((pokemon) => (
-              <PokemonCard key={pokemon.name} {...pokemon} />
+              <PokemonCard
+                key={pokemon.name}
+                pokemon={pokemon}
+                setShowPokemonDetails={setShowPokemonDetails}
+              />
             ))}
           </div>
         ) : (
